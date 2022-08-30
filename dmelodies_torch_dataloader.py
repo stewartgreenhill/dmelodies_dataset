@@ -68,13 +68,13 @@ class DMelodiesTorchDataset:
         Returns:
             tuple of 3 DataLoader objects corresponding to the train, validation and test sets
         """
-        assert sum(split) < 1
+        assert sum(split) <= 1
 
         if self.dataset is None:
             self.load_dataset()
 
         num_examples = len(self.dataset)
-        a, b = split
+        a, b, c = split
         train_dataset = TensorDataset(
             *self.dataset[: int(a * num_examples)]
         )
@@ -82,7 +82,7 @@ class DMelodiesTorchDataset:
             *self.dataset[int(a * num_examples):int((a + b) * num_examples)]
         )
         eval_dataset = TensorDataset(
-            *self.dataset[int((a + b) * num_examples):]
+            *self.dataset[int((a + b) * num_examples):int((a + b + c) * num_examples)]
         )
 
         train_dl = DataLoader(
