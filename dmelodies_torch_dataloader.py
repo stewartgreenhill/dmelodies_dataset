@@ -58,7 +58,7 @@ class DMelodiesTorchDataset:
         self.tick_durations = dataset.tick_durations
 
     def data_loaders(
-            self, batch_size: int, split: tuple = (0.70, 0.20)
+            self, batch_size: int, split: tuple
     ) -> Tuple[DataLoader, DataLoader, DataLoader]:
         """
         Returns three data loaders obtained by splitting the data
